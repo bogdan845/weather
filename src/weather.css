@@ -13,8 +13,8 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
   border-radius: 100%;
   border: 5px solid;
   border-color: transparent #6764B4 transparent #6764B4;
