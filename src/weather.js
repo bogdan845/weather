@@ -230,6 +230,7 @@ const getData = async () => {
     const res = await fetch('https://my-json-server.typicode.com/bogdan845/weather-data/db');
     const data = await (res.json());
 
+
     // set and output saved styles from local storage with loaded data
     const displayWeather = await( () => {
         (initUI.saveStyles(getStylesList, getWeatherWrap));
@@ -276,7 +277,7 @@ const getData = async () => {
     initData.outputWeather(data, getWeatherBlock, getCityData.city, getDayName);
     initData.outputLocaion(getLocation,  getCityData.city,  getCityData.country);
 }
-// getData();
+getData();
 
 
 /* 
