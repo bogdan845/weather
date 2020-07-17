@@ -3,6 +3,25 @@
   margin: 0; }
 
 /*=========================================
+	PRELOADER
+=========================================*/
+.awaiting:after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 100%;
+  border: 5px solid;
+  border-color: transparent #6764B4 transparent #6764B4;
+  animation: loading 1.5s linear infinite; }
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg); } }
+
+/*=========================================
 	VARIABLES FOR COLOR
 =========================================*/
 /*=========================================
