@@ -1,0 +1,350 @@
+/*=========================================
+	FOR DRAWING CLOUD ELEMENTS
+=========================================*/
+
+@mixin cloud-elements($color) {
+    background-color: $color;
+    box-shadow: $color -35px -20px 0 5px, $color 0px -25px 0 10px, $color 35px -20px 0 5px;
+}
+
+/*=========================================
+	CLOUD ANIMATION
+=========================================*/
+
+@keyframes cloud-pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+/*=========================================
+	WEATHER WITH CLOUD
+=========================================*/
+
+.cloud,
+.rain,
+.thunder,
+.snow {
+    width: 145px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: $gray;
+    position: relative;
+    margin: 0 auto;
+
+    &:before {
+        content: "";
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        left: calc(50% - 20px);
+        border-radius: 100%;
+        bottom: 0;
+    }
+}
+
+/*=========================================
+	CLOUD
+=========================================*/
+
+.cloud {
+    animation: cloud-pulse 1.5s linear infinite;
+
+    /*======== CLOUD ELEMENTS COLOR ========*/
+    &:before {
+        @include cloud-elements($gray);
+    }
+}
+
+/*=========================================
+	RAIN
+=========================================*/
+
+.rain {
+    background-color: $gray;
+    animation: cloud-pulse 1.5s linear infinite;
+
+    /*======== CLOUD ELEMENTS COLOR ========*/
+    &:before {
+        @include cloud-elements($gray);
+    }
+
+    /*======== RAIN DROP ========*/
+    &:after {
+        content: "";
+        position: absolute;
+        background: transparent;
+        top: 0;
+        width: 4px;
+        height: 8px;
+        border-radius: 50%;
+        left: 50%;
+        opacity: 1;
+        animation: drop-animation 0.5s linear infinite;
+    }
+}
+
+/*======== RAIN DROP STAGES ========*/
+$drop-stage-1: $blue -60px 70px, transparent -40px 50px, $blue -10px 75px, $blue 20px 60px, $blue 40px 100px,
+    $blue 60px 45px;
+
+$drop-stage-2: $blue -60px 90px, $blue -40px 70px, $blue -10px 100px, $blue 20px 80px, transparent 40px 120px,
+    $blue 60px 65px;
+
+$drop-stage-3: transparent -60px 110px, $blue -40px 90px, transparent -10px 125px, $blue 20px 100px,
+    transparent 40px 60px, $blue 60px 85px;
+
+$drop-stage-4: transparent -60px 50px, $blue -40px 110px, transparent -10px 50px, transparent 20px 120px,
+    $blue 40px 80px, transparent 60px 110px;
+
+$drop-stage-5: $blue -60px 70px, transparent -40px 130px, $blue -10px 75px, transparent 20px 60px, $blue 40px 100px,
+    transparent 60px 135px;
+
+/*======== DROP ANIMATION ========*/
+@keyframes drop-animation {
+    0% {
+        box-shadow: $drop-stage-1;
+    }
+    25% {
+        box-shadow: $drop-stage-2;
+    }
+    50% {
+        box-shadow: $drop-stage-3;
+    }
+    75% {
+        box-shadow: $drop-stage-4;
+    }
+    100% {
+        box-shadow: $drop-stage-5;
+    }
+}
+
+/*=========================================
+	THUNDER
+=========================================*/
+
+.thunder {
+    background-color: $dark-gray;
+    animation: cloud-pulse 1.5s linear infinite;
+
+    /*======== CLOUD ELEMENTS COLOR ========*/
+    &:before {
+        @include cloud-elements($dark-gray);
+    }
+
+    /*======== LIGHTING ========*/
+    &:after {
+        background: rgba(0, 0, 0, 0);
+        content: "";
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        border-top: 40px solid $yellow;
+        border-right: 10px solid transparent;
+        box-shadow: -8px -27px $yellow;
+        animation: lighting-strike 3s linear infinite;
+    }
+}
+
+/*======== lighting animation ========*/
+@keyframes lighting-strike {
+    0% {
+        opacity: 1;
+        transform: rotate(25deg);
+    }
+    5% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: rotate(-25deg);
+    }
+    15% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*=========================================
+	SNOW
+=========================================*/
+
+.snow {
+    animation: cloud-pulse 1.8s linear infinite;
+
+    /*======== CLOUD ELEMENTS COLOR ========*/
+    &::before {
+        @include cloud-elements($gray);
+    }
+
+    /*======== SNOWFLAKES ========*/
+    &::after {
+        content: "";
+        position: absolute;
+        background: transparent;
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        animation: snow 1.5s linear infinite;
+        top: 0;
+        left: 50%;
+    }
+}
+
+/*======== SNOWFLAKE FALL STAGES ========*/
+$snowflake-stage-1: $dark-white -65px 50px, $dark-white -40px 100px, $dark-white -15px 60px, $dark-white 10px 80px,
+    transparent 35px 60px, $dark-white 60px 70px;
+
+$snowflake-stage-2: $dark-white -65px 70px, transparent -40px 120px, $dark-white -15px 75px, $dark-white 10px 100px,
+    $dark-white 35px 80px, $dark-white 60px 95px;
+
+$snowflake-stage-3: $dark-white -65px 90px, transparent -40px 60px, $dark-white -15px 90px, transparent 10px 120px,
+    $dark-white 35px 100px, 60px 120px transparent;
+
+$snowflake-stage-4: transparent -65px 110px, $dark-white -40px 80px, $dark-white -15px 105px, transparent 10px 60px,
+    $dark-white 35px 120px, transparent 60px 95px;
+
+$snowflake-stage-5: transparent -65px 130px, $dark-white -40px 100px, transparent -15px 120px, $dark-white 10px 80px,
+    transparent 35px 140px, transparent 60px 120px;
+
+/*======== SNOWFLAKES ANIMATION ========*/
+@keyframes snow {
+    0% {
+        box-shadow: $snowflake-stage-1;
+    }
+    25% {
+        box-shadow: $snowflake-stage-2;
+    }
+    50% {
+        box-shadow: $snowflake-stage-3;
+    }
+    75% {
+        box-shadow: $snowflake-stage-4;
+    }
+    100% {
+        box-shadow: $snowflake-stage-5;
+    }
+}
+
+/*=========================================
+	SUN
+=========================================*/
+
+.sun {
+    width: 75px;
+    height: 75px;
+    background-color: $gold;
+    animation: sun-rotation 5s linear infinite;
+    margin: 0 auto;
+
+    /*======== SUN PARTS ========*/
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 75px;
+        height: 75px;
+    }
+
+    &:before {
+        z-index: 1;
+        border-radius: 50%;
+        background: $orange;
+        box-shadow: 0px 0px 50px 15px $gold;
+    }
+
+    &:after {
+        transform: rotate(45deg);
+        background-color: $gold;
+    }
+}
+
+/*======== SUN ANIMATION ========*/
+@keyframes sun-rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*=========================================
+	MOON
+=========================================*/
+
+/*======== position for first pack of star ========*/
+$first-stars: $dark-white 80px -30px, $dark-white -20px 0px, $dark-white 95px 30px, $dark-white 70px 60px,
+    $dark-white -55px 90px, $dark-white 45px 110px, $dark-white 95px 100px, $dark-white -75px 15px;
+
+/*======== position for second pack of star ========*/
+$second-stars: $dark-white 25px -45px, $dark-white 105px 0px, $dark-white -45px 45px, $dark-white 60px 25px,
+    $dark-white -5px 105px, $dark-white 115px 75px, $dark-white -45px -25px;
+
+/*======== MOON ========*/
+.moon {
+    position: relative;
+    height: 75px;
+    width: 75px;
+    background: transparent;
+    border-radius: 100%;
+    box-shadow: inset 25px 0px $dark-white;
+    margin: 0 auto;
+
+    /*======== same for "stars" ========*/
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        background: $dark-white;
+        border-radius: 100%;
+        left: 0;
+        width: 2px;
+        height: 2px;
+        background: transparent;
+        top: 0;
+    }
+
+    &:before {
+        box-shadow: $first-stars;
+        animation: first-pack 4s linear 2s infinite;
+    }
+
+    &:after {
+        box-shadow: $second-stars;
+        animation: second-pack 4s linear infinite;
+    }
+}
+
+/*======== first pack star animation ========*/
+@keyframes first-pack {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*======== second pack star animation ========*/
+@keyframes second-pack {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

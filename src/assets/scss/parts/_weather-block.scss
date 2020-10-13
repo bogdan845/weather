@@ -1,0 +1,230 @@
+/*=========================================
+	WEATHER CONTAINER
+=========================================*/
+
+.weather-block {
+	width: 100%;
+	color: $dark-white;
+	height: 94%;
+	position: relative;
+}
+
+/*=========================================
+	LIST (wind, date, humidity, type of weather)
+=========================================*/
+
+.info-list {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	transition: 0.75s linear;
+	height: 64%;
+	position: absolute;
+	overflow: hidden;
+
+	&__item {
+		width: 50%;
+		padding: 5px 10px;
+		font-size: 18px;
+		opacity: 0;
+		transition: 0.5s linear;
+
+		/*======== FONT AWESOME ICONS ========*/
+		.far,
+		.fas {
+			padding-right: 10px;
+		}
+
+		/*======== FIRST 2 CHILD ========*/
+		&:nth-child(1),
+		&:nth-child(2) {
+			font-size: 24px;
+			padding-top: 25px;
+			padding-bottom: 35px;
+			opacity: 0.7;
+			cursor: pointer;
+		}
+
+		&:nth-child(3),
+		&:nth-child(4) {
+			padding-top: 100px;
+		}
+
+		/*======== EVERY FRIST CHILD ========*/
+		&:nth-child(2n + 1) {
+			padding-left: 20px;
+		}
+
+		/*======== EVERY SECOND CHILD ========*/
+		&:nth-child(2n + 2) {
+			text-align: right;
+			padding-right: 20px;
+
+			.far,
+			.fas {
+				padding-left: 10px;
+				padding-right: 0;
+			}
+		}
+
+		/*======== SAME FOR PERIOD WEATHER ========*/
+		.morning-weather,
+		.day-weather,
+		.evening-weather,
+		.night-weather {
+			margin: 250px auto 0;
+			opacity: 0;
+			transition: 0.75s linear, opacity 0.75s linear 0.5s;
+			position: relative;
+		}
+	}
+}
+
+/*=========================================
+	SAME STYLES FOR EACH DAY PERIOD
+=========================================*/
+
+.show-morning .morning,
+.show-day .day,
+.show-evening .evening,
+.show-night .night {
+	&-weather {
+		opacity: 1;
+		margin-top: 45px;
+	}
+
+	.info-list__item {
+		opacity: 1;
+		cursor: default;
+
+		&:nth-child(3),
+		&:nth-child(4) {
+			padding-top: 0px;
+		}
+	}
+}
+
+/*=========================================
+	SHOW MORNING
+=========================================*/
+
+.show-morning {
+	.morning {
+		top: 0;
+	}
+
+	.day {
+		top: 64%;
+	}
+
+	.evening {
+		top: 76%;
+	}
+
+	.night {
+		top: 88%;
+	}
+}
+
+/*=========================================
+	SHOW DAY
+=========================================*/
+
+.show-day {
+	.morning {
+		top: 0;
+	}
+
+	.day {
+		top: 12%;
+	}
+
+	.evening {
+		top: 76%;
+	}
+
+	.night {
+		top: 88%;
+	}
+}
+
+/*=========================================
+	SHOW EVENING
+=========================================*/
+
+.show-evening {
+	.morning {
+		top: 0;
+	}
+
+	.day {
+		top: 12%;
+	}
+
+	.evening {
+		top: 24%;
+	}
+
+	.night {
+		top: 88%;
+	}
+}
+
+/*=========================================
+	SHOW NIGHT
+=========================================*/
+
+.show-night {
+	.morning {
+		top: 0;
+	}
+
+	.day {
+		top: 12%;
+	}
+
+	.evening {
+		top: 24%;
+	}
+
+	.night {
+		top: 36%;
+	}
+}
+
+/*=========================================
+	MORNING
+=========================================*/
+
+.morning {
+	background-color: #b08d79;
+}
+
+/*=========================================
+	DAY
+=========================================*/
+
+.day {
+	background-color: #634e43;
+}
+
+/*=========================================
+	EVENING
+=========================================*/
+
+.evening {
+	background-color: #463b33;
+}
+
+/*=========================================
+	NIGHT
+=========================================*/
+
+.night {
+	background-color: #36230a;
+}

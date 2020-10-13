@@ -1,0 +1,237 @@
+/*=========================================
+	SLIDE MENU (main menu)
+=========================================*/
+
+.menu {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    height: 94%;
+    left: -100%;
+    z-index: 1;
+    font-size: 20px;
+    background: linear-gradient(to top right, #36230a, #88695b);
+    color: $dark-white;
+    padding: 0px;
+    margin: 0px;
+    transition: 0.5s ease-in;
+    visibility: hidden;
+    opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__list {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px 40px 0 20px;
+        width: 100%;
+        max-width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__item {
+        padding: 10px 0px;
+        cursor: pointer;
+    }
+
+    &.active {
+        visibility: visible;
+        left: 0;
+        opacity: 1;
+    }
+
+    /*======== MENU "STYLES" ========*/
+    &__style {
+        list-style-type: none;
+        position: absolute;
+        top: 75px;
+        right: -25%;
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        transition: 0.25s ease-in;
+
+        &.active {
+            right: 20px;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /*======== ITEM "STYLES" ========*/
+        &--item {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 0px;
+            text-align: right;
+            padding: 0;
+        }
+    }
+
+    /*======== SAME STYLE (FONTS / COLORS) ========*/
+    &__color,
+    &__font {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+        background: rgba(0, 0, 0, 0.2);
+        align-self: flex-end;
+
+        &--item {
+            cursor: pointer;
+        }
+    }
+
+    /*======== MENU "COLORS" ========*/
+    &__color {
+        margin-top: 10px;
+
+        &--item {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 10px 10px 0 10px;
+            border-radius: 100%;
+
+            &:last-child {
+                margin-bottom: 10px;
+            }
+
+            /*========== SHADOW FOR BTNS ==========*/
+            &:after {
+                content: "";
+                position: absolute;
+                border-radius: 100%;
+                box-shadow: 0px 0px 5px 0px $dark-white;
+                width: 30px;
+                height: 30px;
+                top: 0;
+                left: 0;
+            }
+
+            /*========== BACKGROUNDCOLOR FOR :after ==========*/
+            &.brown {
+                background: linear-gradient(to top right, #36230a, #88695b);
+            }
+
+            &.green {
+                background: linear-gradient(to top right, #234037, #337a54);
+            }
+
+            &.violet {
+                background: linear-gradient(to top right, #332d4c, #6764b4);
+            }
+        }
+    }
+
+    /*======== MENU FONTS ========*/
+    &__font {
+        margin-top: 10px;
+        &--item {
+            margin: 10px 10px 0 10px;
+            text-align: center;
+
+            &:last-child {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+/*=========================================
+	FONTS
+=========================================*/
+
+.architects-daughter {
+    font-family: "Architects Daughter";
+}
+
+.gochi-hand {
+    font-family: "Gochi Hand";
+}
+
+.kalam {
+    font-family: "Kalam";
+}
+
+/*=========================================
+	BTN STYLE (font, background)
+=========================================*/
+
+.btn-style {
+    position: absolute;
+    z-index: 1;
+    top: 25px;
+    right: 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    background: transparent;
+    color: $dark-white;
+    font-size: 20px;
+}
+
+/*=========================================
+	WEATHER WRAP STYLES
+=========================================*/
+
+.weather-wrap {
+    /*======== GREEN BG ========*/
+    &.green {
+        .top-panel {
+            background-color: #247a55;
+        }
+
+        .menu {
+            background: linear-gradient(to top right, #234037, #337a54);
+        }
+
+        .morning {
+            background-color: #63c875;
+        }
+
+        .day {
+            background-color: #34a869;
+        }
+
+        .evening {
+            background-color: #297244;
+        }
+
+        .night {
+            background-color: #234037;
+        }
+    }
+
+    /*======== VIOLET BG ========*/
+    &.violet {
+        .top-panel {
+            background-color: #6764b4;
+        }
+
+        .menu {
+            background: linear-gradient(to top right, #332d4c, #6764b4);
+        }
+
+        .morning {
+            background-color: #b1a4d7;
+        }
+
+        .day {
+            background-color: #574d7c;
+        }
+
+        .evening {
+            background-color: #463367;
+        }
+
+        .night {
+            background-color: #332d4c;
+        }
+    }
+}

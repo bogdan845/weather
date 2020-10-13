@@ -1,0 +1,114 @@
+/*=========================================
+	WEATHER WRAP
+=========================================*/
+
+.weather-wrap {
+	margin: 0px auto;
+	position: relative;
+	overflow: hidden;
+	max-width: 475px;
+	width: 100%;
+	max-height: 900px;
+	min-height: 568px;
+	height: 100vh;
+	transition: 0.25s linear;
+	opacity: 1;
+	perspective: 700px;
+	font-family: 'Kalam';
+
+	&.awaiting {
+		opacity: 0;
+	}
+}
+
+/*=========================================
+	TOP PANEL
+=========================================*/
+
+.top-panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #88695b;
+	color: $dark-white;
+	height: 6%;
+	line-height: 20px;
+	font-size: 20px;
+	width: 100%;
+	padding: 0px 20px;
+	opacity: 1;
+
+	/*======== CITY ========*/
+	&__city {
+		margin-bottom: 0;
+		width: 100%;
+		max-width: 200px;
+		font-size: 18px;
+	}
+
+	/*======== SETTINGS BTN ========*/
+	&__btn {
+		padding: 0px;
+		outline: none;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		color: $dark-white;
+		height: 20px;
+		width: 25px;
+		background-color: transparent;
+		position: relative;
+		overflow: hidden;
+	}
+
+	/*======== ICON FOR BUTTON ========*/
+	&__btn--icon {
+		width: 100%;
+		height: 2px;
+		background-color: $dark-white;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transition: 0.25s linear;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transition: 0.25s linear;
+			background-color: $dark-white;
+		}
+
+		&:before {
+			top: 8px;
+			transition: top 0.25s linear 0.25s, transform 0.25s linear;
+		}
+
+		&:after {
+			bottom: 8px;
+			transition: bottom 0.25s linear 0.25s, transform 0.25s linear;
+		}
+	}
+
+	/*======== ANIMATION FOR ICON ========*/
+	&__btn.active {
+		.top-panel__btn--icon {
+			background-color: transparent;
+
+			&:before {
+				top: 0;
+				transform: rotateZ(45deg);
+				transition: 0.25s linear, transform 0.25s linear 0.25s;
+			}
+
+			&:after {
+				bottom: 0;
+				transform: rotateZ(-45deg);
+				transition: 0.25s linear, transform 0.25s linear 0.25s;
+			}
+		}
+	}
+}

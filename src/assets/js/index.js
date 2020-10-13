@@ -1,7 +1,7 @@
 // check, set and get values from local storage
-const setStyles = localStorage.getItem('styles') ? JSON.parse(localStorage.getItem('styles')) : {};
-localStorage.setItem('styles', JSON.stringify(setStyles));
-const getStylesList = JSON.parse(localStorage.getItem('styles'));
+const setStyles = localStorage.getItem('weatherStyles') ? JSON.parse(localStorage.getItem('weatherStyles')) : {};
+localStorage.setItem('weatherStyles', JSON.stringify(setStyles));
+const getStylesList = JSON.parse(localStorage.getItem('weatherStyles'));
 
 // get settings btn
 const getSettingsBtn = document.getElementById('settings');
@@ -10,10 +10,10 @@ const getSettingsBtn = document.getElementById('settings');
 const getMainMenuBtn = document.getElementById('main-menu');
 
 // button for style options (fonts, colors)
-const getStylesBtn = document.getElementById('stylesBtn');
+const getStylesBtn = document.getElementById('styles-btn');
 
 // menu with styles (fonts, colors)
-const getMenuStyles = document.getElementById('stylesMenu');
+const getMenuStyles = document.getElementById('styles-menu');
 
 // menu with colors
 const getMenuColor = document.getElementById('colors');
@@ -28,7 +28,7 @@ const getWeatherBlock = document.getElementById('weather-block');
 const getWeatherWrap = document.getElementById('weather-wrap');
 
 // list for cities
-const getCitiesList = document.getElementById('citiesList');
+const getCitiesList = document.getElementById('cities-list');
 
 // get location (top panel)
 const getLocation = document.getElementById('currentLocation');
@@ -70,7 +70,7 @@ const currentDate = date.getDate() + ' ' + monthNames[date.getMonth()] + ' ' + d
 const getDayName = dayName[date.getDay()];
 
 
-/* 
+/*
 ** CLASS UI
 */
 class UI {
@@ -84,7 +84,7 @@ class UI {
     // set active day period
     setActiveDayPeriod(target) {
         if (target.classList.contains('info-list__item')) {
-            getWeatherBlock.classList = 'weather-block ' +
+            getWeatherBlock.classList = 'weather-block' +
                 'show-' + target.parentNode.getAttribute('data-period');
         } else { }
     }
@@ -93,7 +93,7 @@ class UI {
     setStyles(target, neededClass, neededData, key) {
         if (target.classList.contains(neededClass)) {
             getStylesList[key] = target.getAttribute(neededData);
-            localStorage.setItem('styles', JSON.stringify(getStylesList));
+            localStorage.setItem('weatherStyles', JSON.stringify(getStylesList));
         } else { }
     }
 
@@ -107,13 +107,13 @@ class UI {
 }
 
 
-/* 
+/*
 ** UI CLASS INITIALIZATION
 */
 const initUI = new UI();
 
 
-/* 
+/*
 ** MENU BUTTON (settings)
 */
 getSettingsBtn.addEventListener('click', function (e) {
@@ -122,7 +122,7 @@ getSettingsBtn.addEventListener('click', function (e) {
 });
 
 
-/* 
+/*
 ** FONT AND THEME BUTTON
 */
 getStylesBtn.addEventListener('click', () => {
@@ -130,15 +130,15 @@ getStylesBtn.addEventListener('click', () => {
 });
 
 
-/*  
-** CLICK EVENT FOR SHOWIGN CLICKED PERIOD OF DAY
+/*
+** CLICK EVENT FOR SHOWING CLICKED PERIOD OF DAY
 */
 getWeatherBlock.addEventListener('click', (e) => {
     initUI.setActiveDayPeriod(e.target);
 });
 
 
-/* 
+/*
 ** CLICK EVENT FOR COLORS
 */
 getMenuColor.addEventListener('click', (e) => {
@@ -147,8 +147,8 @@ getMenuColor.addEventListener('click', (e) => {
 });
 
 
-/* 
-** CLICK EVENT FOR FOTNS
+/*
+** CLICK EVENT FOR FONTS
 */
 getMenuFont.addEventListener('click', (e) => {
     initUI.setStyles(e.target, 'menu__font--item', 'data-font', 'font');
@@ -156,7 +156,7 @@ getMenuFont.addEventListener('click', (e) => {
 });
 
 
-/* 
+/*
 ** CLASS DATA
 */
 class Data {
@@ -217,19 +217,18 @@ class Data {
 }
 
 
-/* 
+/*
 ** DATA CLASS INITIALLIZATION
 */
 const initData = new Data();
 
 
-/* 
+/*
 ** GET DATA FROM JSON FILE
 */
 const getData = async () => {
     const res = await fetch('https://my-json-server.typicode.com/bogdan845/weather-data/db');
     const data = await (res.json());
-
 
     // set and output saved styles from local storage with loaded data
     const displayWeather = await( () => {
@@ -237,7 +236,6 @@ const getData = async () => {
         (document.body.classList.remove("awaiting"));
     });
     displayWeather();
-
 
     // output citites from data
     initData.outputCities(data, getCitiesList);
@@ -249,23 +247,27 @@ const getData = async () => {
     let cityData = {};
 
     // check and set local storage
-    let cityInfo = localStorage.getItem("city") ? localStorage.getItem("city", JSON.stringify(cityData)) : localStorage.setItem("city", JSON.stringify({ "city": "Kiev", "country": "Ukraine" }));
+    let cityInfo = localStorage.getItem("weatherCity") ? localStorage.getItem("weatherCity", JSON.stringify(cityData)) : localStorage.setItem("weatherCity", JSON.stringify({ "city": "Kiev", "country": "Ukraine" }));
 
     // get values from local storage (city)
-    let getCityData = JSON.parse(localStorage.getItem("city"));
+    let getCityData = JSON.parse(localStorage.getItem("weatherCity"));
 
     // click event for each city
     Array.from(getMenuItems).forEach((item) => {
         item.addEventListener('click', function () {
 
+            // close menu
+            getSettingsBtn.classList.remove("active");
+            getMainMenuBtn.classList.remove("active");
+
             // get selected values
             cityData = { city: this.innerText, country: data[this.innerText].country }
-            
+
             // set local storage when click on city
-            localStorage.setItem("city", JSON.stringify(cityData));
-            
+            localStorage.setItem("weatherCity", JSON.stringify(cityData));
+
             // get values from local storage
-            getCityData = JSON.parse(localStorage.getItem("city"));
+            getCityData = JSON.parse(localStorage.getItem("weatherCity"));
 
             // output weather dynamically for clicked city
             initData.outputWeather(data, getWeatherBlock, getCityData.city, getDayName);
@@ -280,7 +282,7 @@ const getData = async () => {
 getData();
 
 
-/* 
+/*
 ** DISPLAY CURRENT DAY PERIOD
 */
 const dayPeriod = (time) => {
