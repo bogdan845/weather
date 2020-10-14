@@ -1,5 +1,6 @@
 // check, set and get values from local storage
-const setStyles = localStorage.getItem('weatherStyles') ? JSON.parse(localStorage.getItem('weatherStyles')) : {};
+const setStyles = localStorage.getItem('weatherStyles') ? 
+    JSON.parse(localStorage.getItem('weatherStyles')) : {};
 localStorage.setItem('weatherStyles', JSON.stringify(setStyles));
 const getStylesList = JSON.parse(localStorage.getItem('weatherStyles'));
 
@@ -84,7 +85,7 @@ class UI {
     // set active day period
     setActiveDayPeriod(target) {
         if (target.classList.contains('info-list__item')) {
-            getWeatherBlock.classList = 'weather-block' +
+            getWeatherBlock.classList = 'weather-block ' +
                 'show-' + target.parentNode.getAttribute('data-period');
         } else { }
     }
@@ -247,7 +248,9 @@ const getData = async () => {
     let cityData = {};
 
     // check and set local storage
-    let cityInfo = localStorage.getItem("weatherCity") ? localStorage.getItem("weatherCity", JSON.stringify(cityData)) : localStorage.setItem("weatherCity", JSON.stringify({ "city": "Kiev", "country": "Ukraine" }));
+    let cityInfo = localStorage.getItem("weatherCity") ? 
+        localStorage.getItem("weatherCity", JSON.stringify(cityData)) : 
+        localStorage.setItem("weatherCity", JSON.stringify({ "city": "Kiev", "country": "Ukraine" }));
 
     // get values from local storage (city)
     let getCityData = JSON.parse(localStorage.getItem("weatherCity"));
