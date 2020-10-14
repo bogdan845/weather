@@ -24,7 +24,7 @@ gulp.task("test", function (done) {
 
 // sass
 // ! exclude files that are not needed
-var scss_path = "./src/assets/scss/**/**/*.scss";
+var scss_path = "./src/assets/scss/**/*.scss";
 
 function styles() {
     return gulp.src(scss_path)
