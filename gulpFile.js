@@ -25,16 +25,21 @@ gulp.task("test", function (done) {
 // sass
 // ! exclude files that are not needed
 var scss_path = "./src/assets/scss/**/*.scss";
-
 function styles() {
     return gulp.src(scss_path)
-        .pipe(gulpSourcemaps.init({loadMaps: true}))
         .pipe(sass())
-        .pipe(gulpCleanCss({compatibilty: "ie9"}))
-        .pipe(gulpSourcemaps.write("./"))
         .pipe(gulp.dest("./src/assets/css"))
-        .pipe(gulp.dest("./dist/assets/css"))
         .pipe(browserSync.reload({stream: true}));
+}
+
+// minify styles
+var css_path = "./src/assets/css/**/*css"
+function stylesMinify() {
+    return gulp.src(css_path)
+        .pipe(gulpSourcemaps.init({loadMaps: true}))
+        .pipe(gulpCleanCss({compatibility: "ie9"}))
+        .pipe(gulpSourcemaps.write("./"))
+        .pipe(gulp.dest("./dist/assets/css"))
 }
 
 
@@ -120,6 +125,7 @@ function fonts() {
 /*list of tasks*/
 gulp.task("html", html);
 gulp.task("styles", styles);
+gulp.task("stylesMinify", stylesMinify);
 gulp.task("images", images);
 gulp.task("fonts", fonts);
 gulp.task("scripts", scripts);
@@ -129,5 +135,5 @@ gulp.task("clean", clean);
 
 gulp.task("build", gulp.series(
     clean,
-    gulp.parallel(cache, html, styles, fonts, images, scripts))
+    gulp.parallel(cache, html, stylesMinify, fonts, images, scripts))
 );

@@ -1,2 +1,719 @@
-@font-face{font-family:Kalam;font-weight:400;font-display:swap;src:url(../fonts/Kalam-400.woff) format("woff"),url(../fonts/Kalam-400.woff2) format("woff2"),url(../fonts/Kalam-400.ttf) format("trutype")}@font-face{font-family:"Gochi Hand";font-weight:400;font-display:swap;src:url(../fonts/GochiHand-400.woff) format("woff"),url(../fonts/GochiHand-400.woff2) format("woff2"),url(../fonts/GochiHand-400.ttf) format("trutype")}@font-face{font-family:"Architects Daughter";font-weight:400;font-display:swap;src:url(../fonts/ArchitectsDaughter-400.woff) format("woff"),url(../fonts/ArchitectsDaughter-400.woff2) format("woff2"),url(../fonts/ArchitectsDaughter-400.ttf) format("trutype")}*{box-sizing:border-box;margin:0}body{background-color:#e3eef1}.awaiting:after{content:"";width:100px;height:100px;position:absolute;left:calc(50% - 50px);top:calc(50% - 50px);border-radius:100%;border:5px solid;border-color:transparent #6764b4 transparent #6764b4;animation:loading 1.5s linear infinite}@keyframes loading{100%{transform:rotate(360deg)}}button{border:none;outline:0}button:active,button:focus{border:none;outline:0}.weather-wrap{margin:0 auto;position:relative;overflow:hidden;max-width:475px;width:100%;max-height:900px;min-height:568px;height:100vh;transition:.25s linear;opacity:1;perspective:700px;font-family:Kalam}.weather-wrap.awaiting{opacity:0}.top-panel{display:flex;justify-content:space-between;align-items:center;background:#88695b;color:#f1edd8;height:6%;line-height:20px;font-size:20px;width:100%;padding:0 20px;opacity:1}.top-panel__city{margin-bottom:0;width:100%;max-width:200px;font-size:18px}.top-panel__btn{padding:0;outline:0;border:none;background:0 0;cursor:pointer;color:#f1edd8;height:20px;width:25px;background-color:transparent;position:relative;overflow:hidden}.top-panel__btn--icon{width:100%;height:2px;background-color:#f1edd8;position:absolute;left:0;top:50%;transition:.25s linear}.top-panel__btn--icon:after,.top-panel__btn--icon:before{content:"";position:absolute;left:0;width:100%;height:100%;transition:.25s linear;background-color:#f1edd8}.top-panel__btn--icon:before{top:8px;transition:top .25s linear .25s,transform .25s linear}.top-panel__btn--icon:after{bottom:8px;transition:bottom .25s linear .25s,transform .25s linear}.top-panel__btn.active .top-panel__btn--icon{background-color:transparent}.top-panel__btn.active .top-panel__btn--icon:before{top:0;transform:rotateZ(45deg);transition:.25s linear,transform .25s linear .25s}.top-panel__btn.active .top-panel__btn--icon:after{bottom:0;transform:rotateZ(-45deg);transition:.25s linear,transform .25s linear .25s}.menu{position:absolute;top:6%;width:100%;height:94%;left:-100%;z-index:1;font-size:20px;background:linear-gradient(to top right,#36230a,#88695b);color:#f1edd8;padding:0;margin:0;transition:.5s ease-in;visibility:hidden;opacity:0;overflow-y:auto;overflow-x:hidden}.menu__list{list-style-type:none;margin:0;padding:0 40px 0 20px;width:100%;max-width:250px;display:flex;flex-direction:column;align-items:flex-start}.menu__item{padding:10px 0;cursor:pointer}.menu.active{visibility:visible;left:0;opacity:1}.menu__style{list-style-type:none;position:absolute;top:75px;right:-25%;opacity:0;margin:0;padding:0;display:flex;flex-direction:column;transition:.25s ease-in}.menu__style.active{right:20px;opacity:1;z-index:1}.menu__style--item{display:flex;flex-direction:column;margin:10px 0;text-align:right;padding:0}.menu__color,.menu__font{margin:0;padding:0;list-style-type:none;background:rgba(0,0,0,.2);align-self:flex-end}.menu__color--item,.menu__font--item{cursor:pointer}.menu__color{margin-top:10px}.menu__color--item{position:relative;width:30px;height:30px;margin:10px 10px 0 10px;border-radius:100%}.menu__color--item:last-child{margin-bottom:10px}.menu__color--item:after{content:"";position:absolute;border-radius:100%;box-shadow:0 0 5px 0 #f1edd8;width:30px;height:30px;top:0;left:0}.menu__color--item.brown{background:linear-gradient(to top right,#36230a,#88695b)}.menu__color--item.green{background:linear-gradient(to top right,#234037,#337a54)}.menu__color--item.violet{background:linear-gradient(to top right,#332d4c,#6764b4)}.menu__font{margin-top:10px}.menu__font--item{margin:10px 10px 0 10px;text-align:center}.menu__font--item:last-child{margin-bottom:10px}.architects-daughter{font-family:"Architects Daughter"}.gochi-hand{font-family:"Gochi Hand"}.kalam{font-family:Kalam}.btn-style{position:absolute;z-index:1;top:25px;right:20px;cursor:pointer;outline:0;border:none;padding:0;margin:0;background:0 0;color:#f1edd8;font-size:20px}.weather-wrap.green .top-panel{background-color:#247a55}.weather-wrap.green .menu{background:linear-gradient(to top right,#234037,#337a54)}.weather-wrap.green .morning{background-color:#63c875}.weather-wrap.green .day{background-color:#34a869}.weather-wrap.green .evening{background-color:#297244}.weather-wrap.green .night{background-color:#234037}.weather-wrap.violet .top-panel{background-color:#6764b4}.weather-wrap.violet .menu{background:linear-gradient(to top right,#332d4c,#6764b4)}.weather-wrap.violet .morning{background-color:#b1a4d7}.weather-wrap.violet .day{background-color:#574d7c}.weather-wrap.violet .evening{background-color:#463367}.weather-wrap.violet .night{background-color:#332d4c}.weather-block{width:100%;color:#f1edd8;height:94%;position:relative}.info-list{width:100%;margin:0;padding:0;list-style-type:none;display:flex;flex-direction:row;flex-wrap:wrap;align-content:flex-start;transition:.75s linear;height:64%;position:absolute;overflow:hidden}.info-list__item{width:50%;padding:5px 10px;font-size:18px;opacity:0;transition:.5s linear}.info-list__item .far,.info-list__item .fas{padding-right:10px}.info-list__item:nth-child(1),.info-list__item:nth-child(2){font-size:24px;padding-top:25px;padding-bottom:35px;opacity:.7;cursor:pointer}.info-list__item:nth-child(3),.info-list__item:nth-child(4){padding-top:100px}.info-list__item:nth-child(2n+1){padding-left:20px}.info-list__item:nth-child(2n+2){text-align:right;padding-right:20px}.info-list__item:nth-child(2n+2) .far,.info-list__item:nth-child(2n+2) .fas{padding-left:10px;padding-right:0}.info-list__item .day-weather,.info-list__item .evening-weather,.info-list__item .morning-weather,.info-list__item .night-weather{margin:250px auto 0;opacity:0;transition:.75s linear,opacity .75s linear .5s;position:relative}.show-day .day-weather,.show-evening .evening-weather,.show-morning .morning-weather,.show-night .night-weather{opacity:1;margin-top:45px}.show-day .day .info-list__item,.show-evening .evening .info-list__item,.show-morning .morning .info-list__item,.show-night .night .info-list__item{opacity:1;cursor:default}.show-day .day .info-list__item:nth-child(3),.show-day .day .info-list__item:nth-child(4),.show-evening .evening .info-list__item:nth-child(3),.show-evening .evening .info-list__item:nth-child(4),.show-morning .morning .info-list__item:nth-child(3),.show-morning .morning .info-list__item:nth-child(4),.show-night .night .info-list__item:nth-child(3),.show-night .night .info-list__item:nth-child(4){padding-top:0}.show-morning .morning{top:0}.show-morning .day{top:64%}.show-morning .evening{top:76%}.show-morning .night{top:88%}.show-day .morning{top:0}.show-day .day{top:12%}.show-day .evening{top:76%}.show-day .night{top:88%}.show-evening .morning{top:0}.show-evening .day{top:12%}.show-evening .evening{top:24%}.show-evening .night{top:88%}.show-night .morning{top:0}.show-night .day{top:12%}.show-night .evening{top:24%}.show-night .night{top:36%}.morning{background-color:#b08d79}.day{background-color:#634e43}.evening{background-color:#463b33}.night{background-color:#36230a}@keyframes cloud-pulse{0%{transform:scale(1,1)}50%{transform:scale(1.1,1.1)}100%{transform:scale(1,1)}}.cloud,.rain,.snow,.thunder{width:145px;height:50px;border-radius:50px;background-color:#ccc;position:relative;margin:0 auto}.cloud:before,.rain:before,.snow:before,.thunder:before{content:"";position:absolute;height:40px;width:40px;left:calc(50% - 20px);border-radius:100%;bottom:0}.cloud{animation:cloud-pulse 1.5s linear infinite}.cloud:before{background-color:#ccc;box-shadow:#ccc -35px -20px 0 5px,#ccc 0 -25px 0 10px,#ccc 35px -20px 0 5px}.rain{background-color:#ccc;animation:cloud-pulse 1.5s linear infinite}.rain:before{background-color:#ccc;box-shadow:#ccc -35px -20px 0 5px,#ccc 0 -25px 0 10px,#ccc 35px -20px 0 5px}.rain:after{content:"";position:absolute;background:0 0;top:0;width:4px;height:8px;border-radius:50%;left:50%;opacity:1;animation:drop-animation .5s linear infinite}@keyframes drop-animation{0%{box-shadow:#2979b9 -60px 70px,transparent -40px 50px,#2979b9 -10px 75px,#2979b9 20px 60px,#2979b9 40px 100px,#2979b9 60px 45px}25%{box-shadow:#2979b9 -60px 90px,#2979b9 -40px 70px,#2979b9 -10px 100px,#2979b9 20px 80px,transparent 40px 120px,#2979b9 60px 65px}50%{box-shadow:transparent -60px 110px,#2979b9 -40px 90px,transparent -10px 125px,#2979b9 20px 100px,transparent 40px 60px,#2979b9 60px 85px}75%{box-shadow:transparent -60px 50px,#2979b9 -40px 110px,transparent -10px 50px,transparent 20px 120px,#2979b9 40px 80px,transparent 60px 110px}100%{box-shadow:#2979b9 -60px 70px,transparent -40px 130px,#2979b9 -10px 75px,transparent 20px 60px,#2979b9 40px 100px,transparent 60px 135px}}.thunder{background-color:#404040;animation:cloud-pulse 1.5s linear infinite}.thunder:before{background-color:#404040;box-shadow:#404040 -35px -20px 0 5px,#404040 0 -25px 0 10px,#404040 35px -20px 0 5px}.thunder:after{background:rgba(0,0,0,0);content:"";position:absolute;top:70px;left:50%;border-top:40px solid #ff0;border-right:10px solid transparent;box-shadow:-8px -27px #ff0;animation:lighting-strike 3s linear infinite}@keyframes lighting-strike{0%{opacity:1;transform:rotate(25deg)}5%{opacity:0}10%{opacity:1;transform:rotate(-25deg)}15%{opacity:0}100%{opacity:0}}.snow{animation:cloud-pulse 1.8s linear infinite}.snow::before{background-color:#ccc;box-shadow:#ccc -35px -20px 0 5px,#ccc 0 -25px 0 10px,#ccc 35px -20px 0 5px}.snow::after{content:"";position:absolute;background:0 0;width:7px;height:7px;border-radius:100%;animation:snow 1.5s linear infinite;top:0;left:50%}@keyframes snow{0%{box-shadow:#f1edd8 -65px 50px,#f1edd8 -40px 100px,#f1edd8 -15px 60px,#f1edd8 10px 80px,transparent 35px 60px,#f1edd8 60px 70px}25%{box-shadow:#f1edd8 -65px 70px,transparent -40px 120px,#f1edd8 -15px 75px,#f1edd8 10px 100px,#f1edd8 35px 80px,#f1edd8 60px 95px}50%{box-shadow:#f1edd8 -65px 90px,transparent -40px 60px,#f1edd8 -15px 90px,transparent 10px 120px,#f1edd8 35px 100px,60px 120px transparent}75%{box-shadow:transparent -65px 110px,#f1edd8 -40px 80px,#f1edd8 -15px 105px,transparent 10px 60px,#f1edd8 35px 120px,transparent 60px 95px}100%{box-shadow:transparent -65px 130px,#f1edd8 -40px 100px,transparent -15px 120px,#f1edd8 10px 80px,transparent 35px 140px,transparent 60px 120px}}.sun{width:75px;height:75px;background-color:gold;animation:sun-rotation 5s linear infinite;margin:0 auto}.sun:after,.sun:before{content:"";position:absolute;left:0;top:0;width:75px;height:75px}.sun:before{z-index:1;border-radius:50%;background:orange;box-shadow:0 0 50px 15px gold}.sun:after{transform:rotate(45deg);background-color:gold}@keyframes sun-rotation{100%{transform:rotate(360deg)}}.moon{position:relative;height:75px;width:75px;background:0 0;border-radius:100%;box-shadow:inset 25px 0 #f1edd8;margin:0 auto}.moon:after,.moon:before{content:"";position:absolute;background:#f1edd8;border-radius:100%;left:0;width:2px;height:2px;background:0 0;top:0}.moon:before{box-shadow:#f1edd8 80px -30px,#f1edd8 -20px 0,#f1edd8 95px 30px,#f1edd8 70px 60px,#f1edd8 -55px 90px,#f1edd8 45px 110px,#f1edd8 95px 100px,#f1edd8 -75px 15px;animation:first-pack 4s linear 2s infinite}.moon:after{box-shadow:#f1edd8 25px -45px,#f1edd8 105px 0,#f1edd8 -45px 45px,#f1edd8 60px 25px,#f1edd8 -5px 105px,#f1edd8 115px 75px,#f1edd8 -45px -25px;animation:second-pack 4s linear infinite}@keyframes first-pack{0%{opacity:0}50%{opacity:1}100%{opacity:0}}@keyframes second-pack{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
-/*# sourceMappingURL=main.css.map */
+@font-face {
+  font-family: "Kalam";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Kalam-400.woff") format("woff"), url("../fonts/Kalam-400.woff2") format("woff2"), url("../fonts/Kalam-400.ttf") format("trutype"); }
+
+@font-face {
+  font-family: "Gochi Hand";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/GochiHand-400.woff") format("woff"), url("../fonts/GochiHand-400.woff2") format("woff2"), url("../fonts/GochiHand-400.ttf") format("trutype"); }
+
+@font-face {
+  font-family: "Architects Daughter";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ArchitectsDaughter-400.woff") format("woff"), url("../fonts/ArchitectsDaughter-400.woff2") format("woff2"), url("../fonts/ArchitectsDaughter-400.ttf") format("trutype"); }
+
+* {
+  box-sizing: border-box;
+  margin: 0; }
+
+body {
+  background-color: #E3EEF1; }
+
+/*=========================================
+	PRELOADER
+=========================================*/
+.awaiting:after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+  border-radius: 100%;
+  border: 5px solid;
+  border-color: transparent #6764B4 transparent #6764B4;
+  animation: loading 1.5s linear infinite; }
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg); } }
+
+/*=========================================
+	FOR ALL BUTTONS
+=========================================*/
+button {
+  border: none;
+  outline: none; }
+  button:focus, button:active {
+    border: none;
+    outline: none; }
+
+/*=========================================
+	WEATHER WRAP
+=========================================*/
+.weather-wrap {
+  margin: 0px auto;
+  position: relative;
+  overflow: hidden;
+  max-width: 475px;
+  width: 100%;
+  max-height: 900px;
+  min-height: 568px;
+  height: 100vh;
+  transition: 0.25s linear;
+  opacity: 1;
+  perspective: 700px;
+  font-family: 'Kalam'; }
+  .weather-wrap.awaiting {
+    opacity: 0; }
+
+/*=========================================
+	TOP PANEL
+=========================================*/
+.top-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #88695b;
+  color: #f1edd8;
+  height: 6%;
+  line-height: 20px;
+  font-size: 20px;
+  width: 100%;
+  padding: 0px 20px;
+  opacity: 1;
+  /*======== CITY ========*/
+  /*======== SETTINGS BTN ========*/
+  /*======== ICON FOR BUTTON ========*/
+  /*======== ANIMATION FOR ICON ========*/ }
+  .top-panel__city {
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 200px;
+    font-size: 18px; }
+  .top-panel__btn {
+    padding: 0px;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #f1edd8;
+    height: 20px;
+    width: 25px;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden; }
+  .top-panel__btn--icon {
+    width: 100%;
+    height: 2px;
+    background-color: #f1edd8;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transition: 0.25s linear; }
+    .top-panel__btn--icon:before, .top-panel__btn--icon:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: 0.25s linear;
+      background-color: #f1edd8; }
+    .top-panel__btn--icon:before {
+      top: 8px;
+      transition: top 0.25s linear 0.25s, transform 0.25s linear; }
+    .top-panel__btn--icon:after {
+      bottom: 8px;
+      transition: bottom 0.25s linear 0.25s, transform 0.25s linear; }
+  .top-panel__btn.active .top-panel__btn--icon {
+    background-color: transparent; }
+    .top-panel__btn.active .top-panel__btn--icon:before {
+      top: 0;
+      transform: rotateZ(45deg);
+      transition: 0.25s linear, transform 0.25s linear 0.25s; }
+    .top-panel__btn.active .top-panel__btn--icon:after {
+      bottom: 0;
+      transform: rotateZ(-45deg);
+      transition: 0.25s linear, transform 0.25s linear 0.25s; }
+
+/*=========================================
+	SLIDE MENU (main menu)
+=========================================*/
+.menu {
+  position: absolute;
+  top: 6%;
+  width: 100%;
+  height: 94%;
+  left: -100%;
+  z-index: 1;
+  font-size: 20px;
+  background: linear-gradient(to top right, #36230a, #88695b);
+  color: #f1edd8;
+  padding: 0px;
+  margin: 0px;
+  transition: 0.5s ease-in;
+  visibility: hidden;
+  opacity: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /*======== MENU "STYLES" ========*/
+  /*======== SAME STYLE (FONTS / COLORS) ========*/
+  /*======== MENU "COLORS" ========*/
+  /*======== MENU FONTS ========*/ }
+  .menu__list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px 40px 0 20px;
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; }
+  .menu__item {
+    padding: 10px 0px;
+    cursor: pointer; }
+  .menu.active {
+    visibility: visible;
+    left: 0;
+    opacity: 1; }
+  .menu__style {
+    list-style-type: none;
+    position: absolute;
+    top: 75px;
+    right: -25%;
+    opacity: 0;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.25s ease-in;
+    /*======== ITEM "STYLES" ========*/ }
+    .menu__style.active {
+      right: 20px;
+      opacity: 1;
+      z-index: 1; }
+    .menu__style--item {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0px;
+      text-align: right;
+      padding: 0; }
+  .menu__color, .menu__font {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    background: rgba(0, 0, 0, 0.2);
+    align-self: flex-end; }
+    .menu__color--item, .menu__font--item {
+      cursor: pointer; }
+  .menu__color {
+    margin-top: 10px; }
+    .menu__color--item {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      margin: 10px 10px 0 10px;
+      border-radius: 100%;
+      /*========== SHADOW FOR BTNS ==========*/
+      /*========== BACKGROUNDCOLOR FOR :after ==========*/ }
+      .menu__color--item:last-child {
+        margin-bottom: 10px; }
+      .menu__color--item:after {
+        content: "";
+        position: absolute;
+        border-radius: 100%;
+        box-shadow: 0px 0px 5px 0px #f1edd8;
+        width: 30px;
+        height: 30px;
+        top: 0;
+        left: 0; }
+      .menu__color--item.brown {
+        background: linear-gradient(to top right, #36230a, #88695b); }
+      .menu__color--item.green {
+        background: linear-gradient(to top right, #234037, #337a54); }
+      .menu__color--item.violet {
+        background: linear-gradient(to top right, #332d4c, #6764b4); }
+  .menu__font {
+    margin-top: 10px; }
+    .menu__font--item {
+      margin: 10px 10px 0 10px;
+      text-align: center; }
+      .menu__font--item:last-child {
+        margin-bottom: 10px; }
+
+/*=========================================
+	FONTS
+=========================================*/
+.architects-daughter {
+  font-family: "Architects Daughter"; }
+
+.gochi-hand {
+  font-family: "Gochi Hand"; }
+
+.kalam {
+  font-family: "Kalam"; }
+
+/*=========================================
+	BTN STYLE (font, background)
+=========================================*/
+.btn-style {
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+  color: #f1edd8;
+  font-size: 20px; }
+
+/*=========================================
+	WEATHER WRAP STYLES
+=========================================*/
+.weather-wrap {
+  /*======== GREEN BG ========*/
+  /*======== VIOLET BG ========*/ }
+  .weather-wrap.green .top-panel {
+    background-color: #247a55; }
+  .weather-wrap.green .menu {
+    background: linear-gradient(to top right, #234037, #337a54); }
+  .weather-wrap.green .morning {
+    background-color: #63c875; }
+  .weather-wrap.green .day {
+    background-color: #34a869; }
+  .weather-wrap.green .evening {
+    background-color: #297244; }
+  .weather-wrap.green .night {
+    background-color: #234037; }
+  .weather-wrap.violet .top-panel {
+    background-color: #6764b4; }
+  .weather-wrap.violet .menu {
+    background: linear-gradient(to top right, #332d4c, #6764b4); }
+  .weather-wrap.violet .morning {
+    background-color: #b1a4d7; }
+  .weather-wrap.violet .day {
+    background-color: #574d7c; }
+  .weather-wrap.violet .evening {
+    background-color: #463367; }
+  .weather-wrap.violet .night {
+    background-color: #332d4c; }
+
+/*=========================================
+	WEATHER CONTAINER
+=========================================*/
+.weather-block {
+  width: 100%;
+  color: #f1edd8;
+  height: 94%;
+  position: relative; }
+
+/*=========================================
+	LIST (wind, date, humidity, type of weather)
+=========================================*/
+.info-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  transition: 0.75s linear;
+  height: 64%;
+  position: absolute;
+  overflow: hidden; }
+  .info-list__item {
+    width: 50%;
+    padding: 5px 10px;
+    font-size: 18px;
+    opacity: 0;
+    transition: 0.5s linear;
+    /*======== FONT AWESOME ICONS ========*/
+    /*======== FIRST 2 CHILD ========*/
+    /*======== EVERY FRIST CHILD ========*/
+    /*======== EVERY SECOND CHILD ========*/
+    /*======== SAME FOR PERIOD WEATHER ========*/ }
+    .info-list__item .far,
+    .info-list__item .fas {
+      padding-right: 10px; }
+    .info-list__item:nth-child(1), .info-list__item:nth-child(2) {
+      font-size: 24px;
+      padding-top: 25px;
+      padding-bottom: 35px;
+      opacity: 0.7;
+      cursor: pointer; }
+    .info-list__item:nth-child(3), .info-list__item:nth-child(4) {
+      padding-top: 100px; }
+    .info-list__item:nth-child(2n + 1) {
+      padding-left: 20px; }
+    .info-list__item:nth-child(2n + 2) {
+      text-align: right;
+      padding-right: 20px; }
+      .info-list__item:nth-child(2n + 2) .far,
+      .info-list__item:nth-child(2n + 2) .fas {
+        padding-left: 10px;
+        padding-right: 0; }
+    .info-list__item .morning-weather,
+    .info-list__item .day-weather,
+    .info-list__item .evening-weather,
+    .info-list__item .night-weather {
+      margin: 250px auto 0;
+      opacity: 0;
+      transition: 0.75s linear, opacity 0.75s linear 0.5s;
+      position: relative; }
+
+/*=========================================
+	SAME STYLES FOR EACH DAY PERIOD
+=========================================*/
+.show-morning .morning-weather,
+.show-day .day-weather,
+.show-evening .evening-weather,
+.show-night .night-weather {
+  opacity: 1;
+  margin-top: 45px; }
+
+.show-morning .morning .info-list__item,
+.show-day .day .info-list__item,
+.show-evening .evening .info-list__item,
+.show-night .night .info-list__item {
+  opacity: 1;
+  cursor: default; }
+  .show-morning .morning .info-list__item:nth-child(3), .show-morning .morning .info-list__item:nth-child(4),
+  .show-day .day .info-list__item:nth-child(3),
+  .show-day .day .info-list__item:nth-child(4),
+  .show-evening .evening .info-list__item:nth-child(3),
+  .show-evening .evening .info-list__item:nth-child(4),
+  .show-night .night .info-list__item:nth-child(3),
+  .show-night .night .info-list__item:nth-child(4) {
+    padding-top: 0px; }
+
+/*=========================================
+	SHOW MORNING
+=========================================*/
+.show-morning .morning {
+  top: 0; }
+
+.show-morning .day {
+  top: 64%; }
+
+.show-morning .evening {
+  top: 76%; }
+
+.show-morning .night {
+  top: 88%; }
+
+/*=========================================
+	SHOW DAY
+=========================================*/
+.show-day .morning {
+  top: 0; }
+
+.show-day .day {
+  top: 12%; }
+
+.show-day .evening {
+  top: 76%; }
+
+.show-day .night {
+  top: 88%; }
+
+/*=========================================
+	SHOW EVENING
+=========================================*/
+.show-evening .morning {
+  top: 0; }
+
+.show-evening .day {
+  top: 12%; }
+
+.show-evening .evening {
+  top: 24%; }
+
+.show-evening .night {
+  top: 88%; }
+
+/*=========================================
+	SHOW NIGHT
+=========================================*/
+.show-night .morning {
+  top: 0; }
+
+.show-night .day {
+  top: 12%; }
+
+.show-night .evening {
+  top: 24%; }
+
+.show-night .night {
+  top: 36%; }
+
+/*=========================================
+	MORNING
+=========================================*/
+.morning {
+  background-color: #b08d79; }
+
+/*=========================================
+	DAY
+=========================================*/
+.day {
+  background-color: #634e43; }
+
+/*=========================================
+	EVENING
+=========================================*/
+.evening {
+  background-color: #463b33; }
+
+/*=========================================
+	NIGHT
+=========================================*/
+.night {
+  background-color: #36230a; }
+
+/*=========================================
+	FOR DRAWING CLOUD ELEMENTS
+=========================================*/
+/*=========================================
+	CLOUD ANIMATION
+=========================================*/
+@keyframes cloud-pulse {
+  0% {
+    transform: scale(1, 1); }
+  50% {
+    transform: scale(1.1, 1.1); }
+  100% {
+    transform: scale(1, 1); } }
+
+/*=========================================
+	WEATHER WITH CLOUD
+=========================================*/
+.cloud,
+.rain,
+.thunder,
+.snow {
+  width: 145px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ccc;
+  position: relative;
+  margin: 0 auto; }
+  .cloud:before,
+  .rain:before,
+  .thunder:before,
+  .snow:before {
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    left: calc(50% - 20px);
+    border-radius: 100%;
+    bottom: 0; }
+
+/*=========================================
+	CLOUD
+=========================================*/
+.cloud {
+  animation: cloud-pulse 1.5s linear infinite;
+  /*======== CLOUD ELEMENTS COLOR ========*/ }
+  .cloud:before {
+    background-color: #ccc;
+    box-shadow: #ccc -35px -20px 0 5px, #ccc 0px -25px 0 10px, #ccc 35px -20px 0 5px; }
+
+/*=========================================
+	RAIN
+=========================================*/
+.rain {
+  background-color: #ccc;
+  animation: cloud-pulse 1.5s linear infinite;
+  /*======== CLOUD ELEMENTS COLOR ========*/
+  /*======== RAIN DROP ========*/ }
+  .rain:before {
+    background-color: #ccc;
+    box-shadow: #ccc -35px -20px 0 5px, #ccc 0px -25px 0 10px, #ccc 35px -20px 0 5px; }
+  .rain:after {
+    content: "";
+    position: absolute;
+    background: transparent;
+    top: 0;
+    width: 4px;
+    height: 8px;
+    border-radius: 50%;
+    left: 50%;
+    opacity: 1;
+    animation: drop-animation 0.5s linear infinite; }
+
+/*======== RAIN DROP STAGES ========*/
+/*======== DROP ANIMATION ========*/
+@keyframes drop-animation {
+  0% {
+    box-shadow: #2979b9 -60px 70px, transparent -40px 50px, #2979b9 -10px 75px, #2979b9 20px 60px, #2979b9 40px 100px, #2979b9 60px 45px; }
+  25% {
+    box-shadow: #2979b9 -60px 90px, #2979b9 -40px 70px, #2979b9 -10px 100px, #2979b9 20px 80px, transparent 40px 120px, #2979b9 60px 65px; }
+  50% {
+    box-shadow: transparent -60px 110px, #2979b9 -40px 90px, transparent -10px 125px, #2979b9 20px 100px, transparent 40px 60px, #2979b9 60px 85px; }
+  75% {
+    box-shadow: transparent -60px 50px, #2979b9 -40px 110px, transparent -10px 50px, transparent 20px 120px, #2979b9 40px 80px, transparent 60px 110px; }
+  100% {
+    box-shadow: #2979b9 -60px 70px, transparent -40px 130px, #2979b9 -10px 75px, transparent 20px 60px, #2979b9 40px 100px, transparent 60px 135px; } }
+
+/*=========================================
+	THUNDER
+=========================================*/
+.thunder {
+  background-color: #404040;
+  animation: cloud-pulse 1.5s linear infinite;
+  /*======== CLOUD ELEMENTS COLOR ========*/
+  /*======== LIGHTING ========*/ }
+  .thunder:before {
+    background-color: #404040;
+    box-shadow: #404040 -35px -20px 0 5px, #404040 0px -25px 0 10px, #404040 35px -20px 0 5px; }
+  .thunder:after {
+    background: rgba(0, 0, 0, 0);
+    content: "";
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    border-top: 40px solid #ffff00;
+    border-right: 10px solid transparent;
+    box-shadow: -8px -27px #ffff00;
+    animation: lighting-strike 3s linear infinite; }
+
+/*======== lighting animation ========*/
+@keyframes lighting-strike {
+  0% {
+    opacity: 1;
+    transform: rotate(25deg); }
+  5% {
+    opacity: 0; }
+  10% {
+    opacity: 1;
+    transform: rotate(-25deg); }
+  15% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
+
+/*=========================================
+	SNOW
+=========================================*/
+.snow {
+  animation: cloud-pulse 1.8s linear infinite;
+  /*======== CLOUD ELEMENTS COLOR ========*/
+  /*======== SNOWFLAKES ========*/ }
+  .snow::before {
+    background-color: #ccc;
+    box-shadow: #ccc -35px -20px 0 5px, #ccc 0px -25px 0 10px, #ccc 35px -20px 0 5px; }
+  .snow::after {
+    content: "";
+    position: absolute;
+    background: transparent;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    animation: snow 1.5s linear infinite;
+    top: 0;
+    left: 50%; }
+
+/*======== SNOWFLAKE FALL STAGES ========*/
+/*======== SNOWFLAKES ANIMATION ========*/
+@keyframes snow {
+  0% {
+    box-shadow: #f1edd8 -65px 50px, #f1edd8 -40px 100px, #f1edd8 -15px 60px, #f1edd8 10px 80px, transparent 35px 60px, #f1edd8 60px 70px; }
+  25% {
+    box-shadow: #f1edd8 -65px 70px, transparent -40px 120px, #f1edd8 -15px 75px, #f1edd8 10px 100px, #f1edd8 35px 80px, #f1edd8 60px 95px; }
+  50% {
+    box-shadow: #f1edd8 -65px 90px, transparent -40px 60px, #f1edd8 -15px 90px, transparent 10px 120px, #f1edd8 35px 100px, 60px 120px transparent; }
+  75% {
+    box-shadow: transparent -65px 110px, #f1edd8 -40px 80px, #f1edd8 -15px 105px, transparent 10px 60px, #f1edd8 35px 120px, transparent 60px 95px; }
+  100% {
+    box-shadow: transparent -65px 130px, #f1edd8 -40px 100px, transparent -15px 120px, #f1edd8 10px 80px, transparent 35px 140px, transparent 60px 120px; } }
+
+/*=========================================
+	SUN
+=========================================*/
+.sun {
+  width: 75px;
+  height: 75px;
+  background-color: #ffd700;
+  animation: sun-rotation 5s linear infinite;
+  margin: 0 auto;
+  /*======== SUN PARTS ========*/ }
+  .sun:before, .sun:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 75px; }
+  .sun:before {
+    z-index: 1;
+    border-radius: 50%;
+    background: #ffa500;
+    box-shadow: 0px 0px 50px 15px #ffd700; }
+  .sun:after {
+    transform: rotate(45deg);
+    background-color: #ffd700; }
+
+/*======== SUN ANIMATION ========*/
+@keyframes sun-rotation {
+  100% {
+    transform: rotate(360deg); } }
+
+/*=========================================
+	MOON
+=========================================*/
+/*======== position for first pack of star ========*/
+/*======== position for second pack of star ========*/
+/*======== MOON ========*/
+.moon {
+  position: relative;
+  height: 75px;
+  width: 75px;
+  background: transparent;
+  border-radius: 100%;
+  box-shadow: inset 25px 0px #f1edd8;
+  margin: 0 auto;
+  /*======== same for "stars" ========*/ }
+  .moon:before, .moon:after {
+    content: "";
+    position: absolute;
+    background: #f1edd8;
+    border-radius: 100%;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    top: 0; }
+  .moon:before {
+    box-shadow: #f1edd8 80px -30px, #f1edd8 -20px 0px, #f1edd8 95px 30px, #f1edd8 70px 60px, #f1edd8 -55px 90px, #f1edd8 45px 110px, #f1edd8 95px 100px, #f1edd8 -75px 15px;
+    animation: first-pack 4s linear 2s infinite; }
+  .moon:after {
+    box-shadow: #f1edd8 25px -45px, #f1edd8 105px 0px, #f1edd8 -45px 45px, #f1edd8 60px 25px, #f1edd8 -5px 105px, #f1edd8 115px 75px, #f1edd8 -45px -25px;
+    animation: second-pack 4s linear infinite; }
+
+/*======== first pack star animation ========*/
+@keyframes first-pack {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+/*======== second pack star animation ========*/
+@keyframes second-pack {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
