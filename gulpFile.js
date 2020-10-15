@@ -33,7 +33,7 @@ function styles() {
 }
 
 // minify styles
-var css_path = "./src/assets/css/**/*css"
+var css_path = "./src/assets/css/**/*.css"
 function stylesMinify() {
     return gulp.src(css_path)
         .pipe(gulpSourcemaps.init({loadMaps: true}))
