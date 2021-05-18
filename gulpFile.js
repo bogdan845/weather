@@ -33,7 +33,7 @@ function styles() {
 }
 
 // minify styles
-var css_path = "./src/assets/css/**/*.css"
+var css_path = "./src/assets/css/**/*.css";
 function stylesMinify() {
     return gulp.src(css_path)
         .pipe(gulpSourcemaps.init({loadMaps: true}))
@@ -130,7 +130,7 @@ gulp.task("images", images);
 gulp.task("fonts", fonts);
 gulp.task("scripts", scripts);
 gulp.task("watch", watch);
-gulp.task("cache", cache)
+gulp.task("cache", cache);
 gulp.task("clean", clean);
 
 gulp.task("build", gulp.series(
